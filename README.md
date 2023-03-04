@@ -52,5 +52,8 @@ body_data = str(body.decode()) \
 response = json.dumps(apiResp.__dict__)
 ```
 
-Reference : 
+### Web & API Module
+https://github.com/ngonar/NgonarBankWeb
+
+### Reference : 
 * https://www.rabbitmq.com
