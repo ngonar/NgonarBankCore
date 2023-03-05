@@ -55,5 +55,8 @@ response = json.dumps(apiResp.__dict__)
 ### Web & API Module
 https://github.com/ngonar/NgonarBankWeb
 
+### Article
+The article for this code is on [Medium](https://medium.com/@ngonar/one-concurrency-recipe-with-mq-flavored-line-81259a1c25e2)
+
 ### Reference : 
 * https://www.rabbitmq.com
