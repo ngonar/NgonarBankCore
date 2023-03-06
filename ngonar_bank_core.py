@@ -3,6 +3,8 @@ import sqlite3
 import json
 
 db_url = "/Users/ngonar/PycharmProjects/NgonarBank/ngonarbank/db.sqlite3"
+mq_username = "rabbit"
+mq_password = "admin"
 
 class AccountApiResponse:
     rc = ""
@@ -51,7 +53,7 @@ def processing_the_request():
     connection = pika.BlockingConnection(
         pika.ConnectionParameters(
             host='localhost',
-            credentials=pika.PlainCredentials(username='rabbit', password='admin')
+            credentials=pika.PlainCredentials(username=mq_username, password=mq_password)
         )
     )
     channel = connection.channel()
