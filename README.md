@@ -10,13 +10,15 @@ channel.queue_declare(queue='rpc_queue')
 ```
 2. parse the message
 ```python
-body_data = str(body.decode()) \
-            .replace("'", "") \
-            .split(".")
+mqReq = json.loads(str(body.decode()))
+
+        action = mqReq["action"]
+        norek = mqReq["norek"]
+        amount = mqReq["amount"]
 ```
 3. process the message
 ```python
-        if body_data[0] == "deduct":
+        if action == "deduct":
             current_balance = get_balance(norek)
             print(current_balance[0])
 
@@ -36,7 +38,7 @@ body_data = str(body.decode()) \
                 apiResp.description = "Insufficient Balance "
                 response = json.dumps(apiResp.__dict__)
 
-        elif body_data[0] == "topup":
+        elif action == "topup":
             current_balance = get_balance(norek)
             print(current_balance[0])
             topup_balance(norek, amount)
