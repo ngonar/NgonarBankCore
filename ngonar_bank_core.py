@@ -5,6 +5,7 @@ import json
 db_url = "/Users/ngonar/PycharmProjects/NgonarBank/ngonarbank/db.sqlite3"
 mq_username = "rabbit"
 mq_password = "admin"
+mq_host = "localhost"
 
 class AccountApiResponse:
     rc = ""
@@ -52,7 +53,7 @@ def topup_balance(norek=None, amount=None):
 def processing_the_request():
     connection = pika.BlockingConnection(
         pika.ConnectionParameters(
-            host='localhost',
+            host=mq_host,
             credentials=pika.PlainCredentials(username=mq_username, password=mq_password)
         )
     )
