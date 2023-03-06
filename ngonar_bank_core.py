@@ -61,16 +61,15 @@ def processing_the_request():
 
         print("[x] received %r" % body)
 
-        body_data = str(body.decode()) \
-            .replace("'", "") \
-            .split(".")
+        mqReq = json.loads(str(body.decode()))
 
-        norek = body_data[1]
-        amount = body_data[2]
+        action = mqReq["action"]
+        norek = mqReq["norek"]
+        amount = mqReq["amount"]
 
         response = ""
 
-        if body_data[0] == "deduct":
+        if action == "deduct":
             current_balance = get_balance(norek)
             print(current_balance[0])
 
@@ -90,7 +89,7 @@ def processing_the_request():
                 apiResp.description = "Insufficient Balance "
                 response = json.dumps(apiResp.__dict__)
 
-        elif body_data[0] == "topup":
+        elif action == "topup":
             current_balance = get_balance(norek)
             print(current_balance[0])
             topup_balance(norek, amount)
